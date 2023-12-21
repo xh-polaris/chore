@@ -1,5 +1,5 @@
 #!/bin/bash
-version=$(curl -s "https://hub.docker.com/v2/repositories/${1}/tags/" | jq -e '.results[].name' 2> /dev/null | grep  -E  '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -1)
+version=$(curl -s "https://hub.docker.com/v2/repositories/${1}/tags/" | jq -e '.results[].name' 2> /dev/null | grep  -oE  'v[0-9]+\.[0-9]+\.[0-9]+' | head -1)
 if [[ -z $version ]]; then
   version=${version:-'v1.0.0'}
 else
